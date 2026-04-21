@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
+[RequireComponent(typeof(Rigidbody2D), typeof(Collider2D), typeof(SpriteRenderer))]
 public class PlayerController : MonoBehaviour
 {
 
@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     //2. Move our player horizontally based on the horizontal input value.
     private Rigidbody2D rb;
     private Collider2D col;
+    private SpriteRenderer sr;
 
     //cached variables
     private Vector2 groundCheckPos => CalculateGroundCheckPos();
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
+        sr = GetComponent<SpriteRenderer>();
 
         //if (groundCheckTransform == null)
         //{
@@ -53,6 +55,8 @@ public class PlayerController : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         bool jumpInput = Input.GetButtonDown("Jump");
 
+        if (horizontalInput != 0) SpriteFlip(horizontalInput);
+
         // Move the player horizontally based on the horizontal input value
         rb.linearVelocityX = horizontalInput * moveSpeed;
 
@@ -62,4 +66,8 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+    void SpriteFlip(float horizontalInput) => sr.flipX = (horizontalInput < 0);      
+    //if (sr.flipX && horizontalInput > 0 || !sr.flipX && horizontalInput < 0)
+    //    sr.flipX = !sr.flipX;    
 }
