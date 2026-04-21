@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Collider2D col;
     private SpriteRenderer sr;
+    private Animator anim;
 
     //cached variables
     private Vector2 groundCheckPos => CalculateGroundCheckPos();
@@ -37,6 +38,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
         sr = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
 
         //if (groundCheckTransform == null)
         //{
@@ -50,6 +52,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Check if the player is grounded by performing a circle overlap at the ground check position
         _isGrounded = Physics2D.OverlapCircle(groundCheckPos, groundCheckRadius, groundLayer);
 
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -65,6 +68,9 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
 
+        anim.SetFloat("horizontalInput", Mathf.Abs(horizontalInput));
+        anim.SetBool("isGrounded", _isGrounded);
+        anim.SetFloat("yVel", rb.linearVelocityY);
     }
 
     void SpriteFlip(float horizontalInput) => sr.flipX = (horizontalInput < 0);      
