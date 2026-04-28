@@ -3,8 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D), typeof(SpriteRenderer))]
 public class PlayerController : MonoBehaviour
 {
-
-    //public GameObject groundCheckTransform;
+    [Header("Ground Check Settings")]
     [SerializeField] private float groundCheckRadius = 0.02f;
     [SerializeField] private LayerMask groundLayer;
 
@@ -19,17 +18,9 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer sr;
     private Animator anim;
 
-    //cached variables
-    private Vector2 groundCheckPos => CalculateGroundCheckPos();
-
     //state variables
     private bool _isGrounded;
-
-    private Vector2 CalculateGroundCheckPos()
-    {
-        Bounds bounds = col.bounds;
-        return new Vector2(bounds.center.x, bounds.min.y);
-    }
+    private GroundCheck groundCheck;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -39,21 +30,14 @@ public class PlayerController : MonoBehaviour
         col = GetComponent<Collider2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-
-        //if (groundCheckTransform == null)
-        //{
-        //    Debug.LogError("Ground Check Transform is not assigned in the inspector.");
-        //    groundCheckTransform = new GameObject("GroundCheck");
-        //    groundCheckTransform.transform.SetParent(transform);
-        //    groundCheckTransform.transform.localPosition = Vector3.zero;
-        //}
+        groundCheck = new GroundCheck(col, rb, groundCheckRadius, groundLayer);
     }
 
     // Update is called once per frame
     void Update()
     {
         // Check if the player is grounded by performing a circle overlap at the ground check position
-        _isGrounded = Physics2D.OverlapCircle(groundCheckPos, groundCheckRadius, groundLayer);
+        _isGrounded = groundCheck.CheckGrounded();
 
         float horizontalInput = Input.GetAxis("Horizontal");
         bool jumpInput = Input.GetButtonDown("Jump");
@@ -68,6 +52,7 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
 
+        // Update animator parameters
         anim.SetFloat("horizontalInput", Mathf.Abs(horizontalInput));
         anim.SetBool("isGrounded", _isGrounded);
         anim.SetFloat("yVel", rb.linearVelocityY);
