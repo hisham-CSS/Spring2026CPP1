@@ -39,6 +39,6 @@ public class CameraFollow : MonoBehaviour
         //update the X position to be  the same as the target's X position, but clamped between our min and max X values
         currentPos.x = Mathf.Clamp(target.position.x, minXPos, maxXPos);
 
-        transform.position = Vector3.MoveTowards(transform.position, currentPos, 5f * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, currentPos, 10f * Time.deltaTime);
     }
 }

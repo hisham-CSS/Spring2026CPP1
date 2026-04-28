@@ -36,11 +36,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        AnimatorClipInfo[] clipInfo = anim.GetCurrentAnimatorClipInfo(0);
         // Check if the player is grounded by performing a circle overlap at the ground check position
         _isGrounded = groundCheck.CheckGrounded();
 
         float horizontalInput = Input.GetAxis("Horizontal");
         bool jumpInput = Input.GetButtonDown("Jump");
+        bool fireInput = Input.GetButtonDown("Fire1");
 
         if (horizontalInput != 0) SpriteFlip(horizontalInput);
 
@@ -50,6 +52,16 @@ public class PlayerController : MonoBehaviour
         if (jumpInput && _isGrounded)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        }
+
+        if (fireInput && clipInfo[0].clip.name != "Fire")
+        {
+            anim.SetTrigger("Fire");
+        }
+
+        if (clipInfo[0].clip.name == "Fire")
+        {
+            rb.linearVelocity = Vector2.zero;
         }
 
         // Update animator parameters
