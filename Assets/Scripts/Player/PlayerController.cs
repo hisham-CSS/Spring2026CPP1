@@ -70,7 +70,40 @@ public class PlayerController : MonoBehaviour
         anim.SetFloat("yVel", rb.linearVelocityY);
     }
 
-    void SpriteFlip(float horizontalInput) => sr.flipX = (horizontalInput < 0);      
+    void SpriteFlip(float horizontalInput) => sr.flipX = (horizontalInput < 0);
     //if (sr.flipX && horizontalInput > 0 || !sr.flipX && horizontalInput < 0)
-    //    sr.flipX = !sr.flipX;    
+    //    sr.flipX = !sr.flipX;
+
+
+    //oncollisionenter, oncollisionexit, oncollisionstay, ontriggerenter, ontriggerexit, and ontriggerstay functions for the player to interact with the environment and other objects, such as picking up items or taking damage from enemies
+    //the collision functions are specifically for blocking collisions - this means that both colliders are solid and at least one of the colliding bodies is a dynamic rigidbody.
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("PlayerController: OnTriggerEnter2D called with collider " + collision.name);
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Debug.Log("PlayerController: OnTriggerExit2D called with collider " + collision.name);
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        Debug.Log("PlayerController: OnTriggerStay2D called with collider " + collision.name);
+    }
 }
