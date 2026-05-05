@@ -281,6 +281,8 @@ MonoBehaviour:
     m_Bits: 8
   moveSpeed: 5
   jumpForce: 7
+  maxLives: 9
+  jumpForcePowerup: 15
 --- !u!50 &145680216
 Rigidbody2D:
   serializedVersion: 5
@@ -357,6 +359,7 @@ GameObject:
   - component: {fileID: 350765254}
   - component: {fileID: 350765253}
   - component: {fileID: 350765252}
+  - component: {fileID: 350765255}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -484,6 +487,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &350765255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350765251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5d9b46e269a9f84289e7093d6d44285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SimplePickup
+  type: 1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
