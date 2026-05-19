@@ -4,10 +4,12 @@ public class Shoot : MonoBehaviour
 {
     private SpriteRenderer sr;
 
-    [SerializeField] private Vector2 initialShotVelocity = new Vector2(3, 3);
+    [SerializeField, Tooltip("Initial velocity of the projectile when fired - this assumes the projectile is facing right")] private Vector2 initialShotVelocity = new Vector2(3, 3);
     [SerializeField] private Transform spawnPointLeft;
     [SerializeField] private Transform spawnPointRight;
     [SerializeField] private Projectile projectilePrefab;
+
+    private Vector2 leftShotVelocity;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,6 +26,8 @@ public class Shoot : MonoBehaviour
         {
             Debug.LogError("Shoot: Spawn points and projectile prefab must be assigned in the inspector on " + gameObject.name);
         }
+
+        leftShotVelocity = new Vector2(-initialShotVelocity.x, initialShotVelocity.y);
     }
 
     public void Fire()
@@ -38,7 +42,7 @@ public class Shoot : MonoBehaviour
         else
         {
             curProjectile = Instantiate(projectilePrefab, spawnPointLeft.position, Quaternion.identity);
-            curProjectile.SetVelocity(initialShotVelocity);
+            curProjectile.SetVelocity(leftShotVelocity);
         }
     }
 }

@@ -202,10 +202,19 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    Debug.Log("PlayerController: OnTriggerEnter2D called with collider " + collision.name);
-    //}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Squish") && rb.linearVelocityY < 0)
+        {
+            BaseEnemy enemy = collision.GetComponentInParent<BaseEnemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(0, DamageType.JumpedOn);
+                rb.linearVelocityY = 0;
+                rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            }
+        }
+    }
 
     //private void OnTriggerExit2D(Collider2D collision)
     //{
