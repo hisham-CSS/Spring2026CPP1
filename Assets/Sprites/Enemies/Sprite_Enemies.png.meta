@@ -8551,15 +8551,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite_Enemies_290
+      name: EnemyProjectile
       rect:
         serializedVersion: 2
         x: 801
         y: 360
         width: 7
         height: 7
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -9519,7 +9519,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite_Enemies_334
+      name: TurretFire1
       rect:
         serializedVersion: 2
         x: 800
@@ -9541,7 +9541,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite_Enemies_335
+      name: TurretFire2
       rect:
         serializedVersion: 2
         x: 823
@@ -9563,7 +9563,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite_Enemies_336
+      name: TurretFire3
       rect:
         serializedVersion: 2
         x: 852
@@ -9585,7 +9585,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite_Enemies_337
+      name: TurretIdle
       rect:
         serializedVersion: 2
         x: 881
@@ -17300,6 +17300,7 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
+      EnemyProjectile: -675099761668843415
       KoopaDeath: -8320605450497437263
       KoopaSquish: -6086775892676988321
       KoopaTurn: -3308117943003608857
@@ -17519,7 +17520,6 @@ TextureImporter:
       Sprite_Enemies_288: -7199059520936841643
       Sprite_Enemies_289: 936871272392101253
       Sprite_Enemies_29: 5637884585264908924
-      Sprite_Enemies_290: -675099761668843415
       Sprite_Enemies_291: 2634411856299483029
       Sprite_Enemies_292: 5163059118326160480
       Sprite_Enemies_293: -147000117367987440
@@ -17568,10 +17568,6 @@ TextureImporter:
       Sprite_Enemies_331: -2074944620527126796
       Sprite_Enemies_332: -5660035332088033470
       Sprite_Enemies_333: -7888178152231183674
-      Sprite_Enemies_334: 6927981411972597962
-      Sprite_Enemies_335: 4627375648895073383
-      Sprite_Enemies_336: 695433566626481274
-      Sprite_Enemies_337: 6826037723698911918
       Sprite_Enemies_338: 8761235641639183874
       Sprite_Enemies_339: -1521151032509392861
       Sprite_Enemies_34: -8577990633489452866
@@ -17987,6 +17983,10 @@ TextureImporter:
       Sprite_Enemies_97: -5235741533605767461
       Sprite_Enemies_98: -3146763840220451440
       Sprite_Enemies_99: 3848975548304371034
+      TurretFire1: 6927981411972597962
+      TurretFire2: 4627375648895073383
+      TurretFire3: 695433566626481274
+      TurretIdle: 6826037723698911918
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
