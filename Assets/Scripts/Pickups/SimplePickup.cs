@@ -20,7 +20,7 @@ public class SimplePickup : MonoBehaviour
             {
 
                 case PickupType.Health:
-                    controller.lives++;
+                    GameManager.Instance.lives++;
                     break;
 
 

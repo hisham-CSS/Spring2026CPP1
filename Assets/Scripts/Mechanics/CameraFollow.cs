@@ -22,9 +22,6 @@ public class CameraFollow : MonoBehaviour
             }
                 
             target = player.transform;
-
-            PlayerController controller = player.GetComponent<PlayerController>();
-            controller.lives++;
         }
     }
 

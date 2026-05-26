@@ -23,55 +23,6 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region State Variables
-    //C++ style getters and setters - not recommended in C#, but here for demonstration purposes
-    //public void SetLives(int value)
-    //{
-    //    if (value > maxLives)
-    //    {
-    //        _lives = maxLives;
-    //    }
-    //    else if (value < 0)
-    //    {
-    //        _lives = 0;
-    //        //go to game over
-    //    }
-    //    else
-    //    {
-    //        _lives = value;
-    //    }
-    //}
-    //public int GetLives()
-    //{
-    //    return _lives;
-    //}
-
-    //if lives is greater than maxLives, set it to maxLives
-    //if lives is less than 0, set it to 0 - and go to game over
-
-    private int _lives = 3;
-    public int lives
-    {
-        get {  return _lives; }
-        set
-        {
-            if (value > maxLives)
-            {
-                _lives = maxLives;
-            }
-            else if (value < 0)
-            {
-                _lives = 0;
-                //go to game over
-            }
-            else
-            {
-                _lives = value;
-            }
-
-            Debug.Log($"Lives have changed to {_lives}");
-        }
-    }
-
     private int _score = 0;
     public int score
     {

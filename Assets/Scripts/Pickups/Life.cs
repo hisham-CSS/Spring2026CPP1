@@ -7,7 +7,7 @@ public class Life : Pickup
 
     public override void OnPickup(GameObject player)
     {
-        player.GetComponent<PlayerController>().lives += livesToAdd;
+        GameManager.Instance.lives += livesToAdd;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
