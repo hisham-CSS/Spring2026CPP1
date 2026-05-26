@@ -10,19 +10,21 @@ public class CameraFollow : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //MAKE YOUR CODE DEFENSIVE AGAINST BAD INPUT
-        if (target == null)
-        {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameManager.Instance.OnPlayerSpawned += (player) => target = player.transform;
+
+        ////MAKE YOUR CODE DEFENSIVE AGAINST BAD INPUT
+        //if (target == null)
+        //{
+        //    GameObject player = GameObject.FindGameObjectWithTag("Player");
             
-            if (player == null)
-            {
-                Debug.LogError("CameraFollow: No target assigned and no GameObject with tag 'Player' found in the scene.");
-                return;
-            }
+        //    if (player == null)
+        //    {
+        //        Debug.LogError("CameraFollow: No target assigned and no GameObject with tag 'Player' found in the scene.");
+        //        return;
+        //    }
                 
-            target = player.transform;
-        }
+        //    target = player.transform;
+        //}
     }
 
     //Inputs are polled in update, Physics are applied in FixedUpdate, and camera movement is best done in LateUpdate, so that we can be sure that the player has moved before we move the camera to follow them.

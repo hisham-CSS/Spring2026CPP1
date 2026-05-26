@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
     private Collider2D col;
     private SpriteRenderer sr;
     private Animator anim;
+    public Animator Anim => anim;
     #endregion
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
