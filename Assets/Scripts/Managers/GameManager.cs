@@ -113,5 +113,5 @@ public class GameManager : MonoBehaviour
     {
         //_playerInstance.Anim.SetTrigger("Respawn");
         _playerInstance.transform.position = currentCheckpoint;
-    }
+    } 
 }
