@@ -3,9 +3,12 @@ using UnityEngine;
 public class TurretEnemy : BaseEnemy
 {
     [SerializeField] private float fireRate = 2f;
+    [SerializeField] private float detectionRange = 3f;
     private float timeSinceLastShot = 0f;
 
     Shoot shoot;
+
+    private Transform target;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public override void Start()
@@ -20,12 +23,25 @@ public class TurretEnemy : BaseEnemy
             fireRate = 2f;
         }
 
+        //Subscriptions to events from the Shoot component and GameManager
         shoot.OnShotFired += () => timeSinceLastShot = Time.time;
+        GameManager.Instance.OnPlayerSpawned += (player) => target = player.transform;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!target) return;
+        sr.flipX = (target.position.x < transform.position.x);
+
+        if (!CheckDistance())
+        {
+            sr.color = Color.white;
+            return;
+        }
+
+        sr.color = Color.red;
+
         AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
 
         if (stateInfo.IsName("Idle"))
@@ -36,5 +52,11 @@ public class TurretEnemy : BaseEnemy
                 //timeSinceLastShot = Time.time;
             }
         }
+    }
+
+    bool CheckDistance()
+    {
+        float distanceToPlayer = Mathf.Abs(target.position.x - transform.position.x);
+        return distanceToPlayer <= detectionRange;
     }
 }

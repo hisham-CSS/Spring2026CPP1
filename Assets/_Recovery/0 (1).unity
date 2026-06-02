@@ -1237,7 +1237,7 @@ GameObject:
   - component: {fileID: 1889093930}
   m_Layer: 0
   m_Name: Turret
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1310,7 +1310,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -1373,7 +1373,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1392541797
   m_SortingLayer: 1
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 6826037723698911918, guid: 810e8aee80e4a754ea03b3c5b1c36459, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1394,7 +1394,7 @@ Transform:
   m_GameObject: {fileID: 1889093924}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.33, y: -2.14, z: 0}
+  m_LocalPosition: {x: 4.55, y: -3.67, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1416,7 +1416,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TurretEnemy
   maxHealth: 5
   fireRate: 2
-  detectionRange: 3
 --- !u!1 &1958379722
 GameObject:
   m_ObjectHideFlags: 0
@@ -1550,10 +1549,6 @@ PrefabInstance:
     - target: {fileID: 459931314844090212, guid: 17983e4358f93fe41b8cdd0c75f8e611, type: 3}
       propertyPath: m_Name
       value: WalkerEnemyContainer
-      objectReference: {fileID: 0}
-    - target: {fileID: 1703286115578286719, guid: 17983e4358f93fe41b8cdd0c75f8e611, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 7061579649962794852, guid: 17983e4358f93fe41b8cdd0c75f8e611, type: 3}
       propertyPath: m_LocalPosition.x

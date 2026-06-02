@@ -29,6 +29,24 @@ public class Projectile : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (projectileType == ProjectileType.EnemyProjectile)
+        {
+            if (collision.CompareTag("Enemy") || collision.CompareTag("Barrier") || collision.CompareTag("Squish"))
+                return;
+
+            // Prevent friendly fire between enemies
+            if (collision.CompareTag("Player"))
+            {
+                GameManager.Instance.lives--;
+            }
+            Destroy(gameObject);
+        }
     }
 
     //add some collision detection functions for the projectile to interact with the environment and other objects, such as damaging enemies or being destroyed on impact with walls

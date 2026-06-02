@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
+[DefaultExecutionOrder(-10)]
 [RequireComponent(typeof(SpriteRenderer), typeof(Animator))]
 public abstract class BaseEnemy : MonoBehaviour
 {
