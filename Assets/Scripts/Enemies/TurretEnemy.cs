@@ -4,9 +4,11 @@ public class TurretEnemy : BaseEnemy
 {
     [SerializeField] private float fireRate = 2f;
     [SerializeField] private float detectionRange = 3f;
+    [SerializeField] private AudioClip fireSound;
     private float timeSinceLastShot = 0f;
 
     Shoot shoot;
+    AudioSource audioSource;
 
     private Transform target;
 
@@ -16,6 +18,7 @@ public class TurretEnemy : BaseEnemy
         base.Start();
 
         shoot = GetComponent<Shoot>();
+        audioSource = GetComponent<AudioSource>();
 
         if (fireRate <= 0f)
         {
@@ -24,7 +27,11 @@ public class TurretEnemy : BaseEnemy
         }
 
         //Subscriptions to events from the Shoot component and GameManager
-        shoot.OnShotFired += () => timeSinceLastShot = Time.time;
+        shoot.OnShotFired += () =>
+        {
+            timeSinceLastShot = Time.time;
+            audioSource.PlayOneShot(fireSound);
+        };
         GameManager.Instance.OnPlayerSpawned += (player) => target = player.transform;
     }
 

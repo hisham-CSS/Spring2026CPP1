@@ -19,6 +19,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpForcePowerup = 15f;
     [SerializeField] private float initalPowerupDuration = 5f;
 
+    [Header("Audio Settings")]
+    [SerializeField] private AudioClip jumpSound;
+    [SerializeField] private AudioClip stompSound;
+    [SerializeField] private AudioClip fireSound;
 
     #endregion
 
@@ -51,8 +55,14 @@ public class PlayerController : MonoBehaviour
     private Collider2D col;
     private SpriteRenderer sr;
     private Animator anim;
+    private Shoot shoot;
     public Animator Anim => anim;
+
+    private AudioSource audioSource;
+
     #endregion
+
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -61,9 +71,13 @@ public class PlayerController : MonoBehaviour
         col = GetComponent<Collider2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+        shoot = GetComponent<Shoot>();
         groundCheck = new GroundCheck(col, rb, groundCheckRadius, groundLayer);
 
         initialJumpForce = jumpForce;
+
+        shoot.OnShotFired += () => audioSource.PlayOneShot(fireSound);
     }
 
     // Update is called once per frame
@@ -85,6 +99,7 @@ public class PlayerController : MonoBehaviour
         if (jumpInput && _isGrounded)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            audioSource.PlayOneShot(jumpSound);
         }
 
         if (fireInput && clipInfo[0].clip.name != "Fire")
@@ -164,6 +179,7 @@ public class PlayerController : MonoBehaviour
                 enemy.TakeDamage(0, DamageType.JumpedOn);
                 rb.linearVelocityY = 0;
                 rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                audioSource.PlayOneShot(stompSound);
             }
         }
     }
