@@ -46,4 +46,6 @@ public enum MenuStates
     MainMenu,
     SettingsMenu,
     CreditsMenu,
+    PauseMenu,
+    InGameHud,
 }

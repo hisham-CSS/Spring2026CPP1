@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
             }
 
             Debug.Log($"Lives have changed to {_lives}");
+            OnLifeValueChanged?.Invoke(_lives);
         }
     }
     #endregion
@@ -64,6 +65,8 @@ public class GameManager : MonoBehaviour
     public PlayerController PlayerInstance => _playerInstance;
 
     private Vector3 currentCheckpoint;
+
+    public Action<int> OnLifeValueChanged;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 

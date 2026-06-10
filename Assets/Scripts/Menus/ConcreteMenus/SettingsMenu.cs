@@ -2,10 +2,12 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using TMPro;
-using Unity.VisualScripting;
 
 public class SettingsMenu : BaseMenu
 {
+    [SerializeField] private Button backButton;
+    [SerializeField] private Button creditsButton;
+
     [SerializeField] private AudioMixer audioMixer;
     
     [SerializeField] private TMP_Text masterVolText;

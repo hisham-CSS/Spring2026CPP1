@@ -89,4 +89,15 @@ public class MenuController : MonoBehaviour
             menuHistory.Push(newState);
         }
     }
+
+    private void Update()
+    {
+        //Input for pause menu
+
+        if (Input.GetButtonDown("Submit"))
+        {
+            //jump to already checks to see if the pause menu exists before trying to push it on to the stack
+            JumpTo(MenuStates.PauseMenu);
+        }
+    }
 }
