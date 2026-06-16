@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Powerup Settings")]
     [SerializeField] private float jumpForcePowerup = 15f;
-    [SerializeField] private float initalPowerupDuration = 5f;
+    [SerializeField] public float initalPowerupDuration = 5f;
 
     [Header("Audio Settings")]
     [SerializeField] private AudioClip jumpSound;
@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region State Variables
+    public float JumpForce => jumpForce;
+    public float JumpForcePowerup => jumpForcePowerup;
     private int _score = 0;
     public int score
     {
@@ -42,6 +44,7 @@ public class PlayerController : MonoBehaviour
     private GroundCheck groundCheck;
 
     private float currentPowerupDuration = 0f;
+    public float CurrentPowerupDuration => currentPowerupDuration;
     private float initialJumpForce = 5f;
 
     private Coroutine jumpForceCoroutine = null;
@@ -77,12 +80,12 @@ public class PlayerController : MonoBehaviour
 
         initialJumpForce = jumpForce;
 
-        shoot.OnShotFired += () => audioSource.PlayOneShot(fireSound);
+        if (shoot) shoot.OnShotFired += () => audioSource.PlayOneShot(fireSound);
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {       
         AnimatorClipInfo[] clipInfo = anim.GetCurrentAnimatorClipInfo(0);
         // Check if the player is grounded by performing a circle overlap at the ground check position
         _isGrounded = groundCheck.CheckGrounded();
@@ -102,14 +105,17 @@ public class PlayerController : MonoBehaviour
             audioSource.PlayOneShot(jumpSound);
         }
 
-        if (fireInput && clipInfo[0].clip.name != "Fire")
+        if (clipInfo.Length > 0)
         {
-            anim.SetTrigger("Fire");
-        }
+            if (fireInput && clipInfo[0].clip.name != "Fire")
+            {
+                anim.SetTrigger("Fire");
+            }
 
-        if (clipInfo[0].clip.name == "Fire")
-        {
-            rb.linearVelocity = Vector2.zero;
+            if (clipInfo[0].clip.name == "Fire")
+            {
+                rb.linearVelocity = Vector2.zero;
+            }
         }
 
         // Update animator parameters
